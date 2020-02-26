@@ -1,80 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
-  <style>
-    @font-face{font-family:'Calluna';
- src:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/callunasansregular-webfont.woff') format('woff');
-}
-body {
-	background: url(//subtlepatterns.com/patterns/scribble_light.png);
-  font-family: Calluna, Arial, sans-serif;
-  min-height: 1000px;
-}
-#columns {
-	column-width: 320px;
-	column-gap: 15px;
-  width: 90%;
-	max-width: 1100px;
-	margin: 50px auto;
-}
-
-div#columns figure {
-	background: #fefefe;
-	border: 2px solid #fcfcfc;
-	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
-	margin: 0 2px 15px;
-	padding: 15px;
-	padding-bottom: 10px;
-	transition: opacity .4s ease-in-out;
-  display: inline-block;
-  column-break-inside: avoid;
-}
-
-div#columns figure img {
-	width: 100%; height: auto;
-	border-bottom: 1px solid #ccc;
-	padding-bottom: 15px;
-	margin-bottom: 5px;
-}
-
-div#columns figure figcaption {
-  font-size: .9rem;
-	color: #444;
-  line-height: 1.5;
-}
-
-div#columns small { 
-  font-size: 1rem;
-  float: right; 
-  text-transform: uppercase;
-  color: #aaa;
-} 
-
-div#columns small a { 
-  color: #666; 
-  text-decoration: none; 
-  transition: .4s color;
-}
-
-div#columns:hover figure:not(:hover) {
-	opacity: 0.4;
-}
-
-@media screen and (max-width: 750px) { 
-  #columns { column-gap: 0px; }
-  #columns figure { width: 100%; }
-}
-  </style>
-  </head>
-<body>
-  <nav> <!-- navbar content here  --> </nav>
+{% include "header.html" %}
   <div class="row">
     <div id="columns">
       <figure>
@@ -84,7 +8,7 @@ div#columns:hover figure:not(:hover) {
       
       <figure>
       <img src="https://techcrunch.com/wp-content/uploads/2019/10/Salesforce-Tower.jpg?w=430&h=230&crop=1">
-      <figcaption>Rapunzel, clothed in 1820’s period fashion</figcaption>
+      <figcaption style="font-size: 20px;color:black;font-weight: bold;">Rapunzel, clothed in 1820’s period fashion</figcaption>
       </figure>
       
       <figure>
@@ -123,61 +47,5 @@ div#columns:hover figure:not(:hover) {
       </figure>	
       </div>
   </div>
-  
-  <ul id="slide-out" class="sidenav">
-        <li><div class="user-view">
-          <div class="background">
-            <img src="images/office.jpg">
-          </div>
-          <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
-          <a href="#name"><span class="white-text name">John Doe</span></a>
-          <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-        </div></li>
-        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-        <li><a href="#!">Second Link</a></li>
-        <li><div class="divider"></div></li>
-        <li><a class="subheader">Subheader</a></li>
-        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-      </ul>
-      <div class="fixed-action-btn">
-          <a id="float-button" class="btn-floating btn-large red sidenav-trigger waves-effect waves-light btn-large" href="#" data-target="slide-out">
-            <i class="large material-icons">menu</i>
-          </a>
-        </div>
-      <script>
-       document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
-  });
-  $(document).ready(function () {
-        console.log("asd")
-        $("#float-button").click(function(){$("#nav").toggle()})
-      })
-  </script>
-  <footer class="page-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Footer Content</h5>
-          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-        </div>
-        <div class="col l4 offset-l2 s12">
-          <h5 class="white-text">Links</h5>
-          <ul>
-            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      © 2014 Copyright Text
-      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-      </div>
-    </div>
-  </footer>
-</body>
-</html>
+  {% include "navbar.html" %}
+  {% include "footer.html" %}
