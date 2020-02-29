@@ -1,3 +1,9 @@
 .vscode
 __pycache__
 site.min
+data.pkl
+dump.py
+content.sql
+init.sh
+static/**
+app/static/**
