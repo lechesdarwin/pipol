@@ -10,14 +10,15 @@ def pita_v(url, limit=8):
     conn = get_conn()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM content_t where link = \'{}\'".format(url))
-    result = []
+    result = None
     try:
         result = list(cursor.fetchone())
     except TypeError:
         abort(404)
-        pass
+    except Exception:
+        abort(404)
     if result:
-        cursor.execute("SELECT id,contenido,categoria,fecha,img from content_t where id > {} limit {}".format(result[0],limit))
+        cursor.execute("SELECT id,contenido,categoria,fecha,img,link from content_t where id > {} limit {}".format(result[0],limit))
     data = {"main": result, "her": [list(row) for row in cursor.fetchall()]}
     dead(conn, cursor)
     return data
