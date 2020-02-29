@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-
+# import grequests
 import pickle
-from concurrent.futures import ThreadPoolExecutor
+# from concurrent.futures import ThreadPoolExecutor
 import requests
 def e(data):
     requests.post("http://127.0.0.1:5000/dump",json=data)
 
 
-executor = ThreadPoolExecutor(max_workers=4)
+# executor = ThreadPoolExecutor(max_workers=4)
 
 dat = []
 with open("data.pkl","rb") as f:
@@ -15,4 +15,4 @@ with open("data.pkl","rb") as f:
 
 for d in dat:
     da = d.json(encoding="utf-8")
-    executor.submit(e,da)
+    print(da)
