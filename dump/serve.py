@@ -16,10 +16,10 @@ def view_controler(r, insert,cursor):
     idex_redis = int(idex_redis)
     title = insert[1]
     title = title.split("*$*")[0]
-    cursor.execute("""UPDATE view SET id_f = %s,title = %s,categoria = %s,fecha = %s,img = %s, pined = %s WHERE id = %s""",(insert[0],title,insert[2],insert[3],insert[4],insert[5],idex_redis))
+    cursor.execute("""UPDATE view SET id_f = %s,title = %s,categoria = %s,fecha = %s,img = %s, pined = %s, link = %s WHERE id = %s""",(insert[0],title,insert[2],insert[3],insert[4][0],insert[5],insert[6],idex_redis))
     if cursor.rowcount == 0:
         try:
-            cursor.execute("""INSERT INTO view(id,id_f,title,categoria,fecha,img,pined)VALUES(%s,%s,%s,%s,%s,%s,%s)""",(idex_redis,insert[0],title,insert[2],insert[3],insert[4],insert[5]))
+            cursor.execute("""INSERT INTO view(id,id_f,title,categoria,fecha,img,pined,link)VALUES(%s,%s,%s,%s,%s,%s,%s,%s)""",(idex_redis,insert[0],title,insert[2],insert[3],insert[4][0],insert[5],insert[6]))
         except UniqueViolation:
             pass
     if cursor.rowcount >= 1:
@@ -36,7 +36,7 @@ def dump():
         dat.append(v)
     data = tuple(dat)
     try:
-        query = """INSERT INTO content_t(contenido,categoria,fecha,img,external,link,tuit,pined) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)RETURNING id,contenido,categoria,fecha,img,pined"""
+        query = """INSERT INTO content_t(contenido,categoria,fecha,img,external,link,tuit,pined) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)RETURNING id,contenido,categoria,fecha,img,pined,link"""
         cursor.execute(query,data)
         returning = cursor.fetchone()
         view_controler(redis.Redis(db=2),returning,cursor)

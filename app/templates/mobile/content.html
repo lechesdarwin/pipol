@@ -41,35 +41,26 @@
             <a data-id="{{ a[0] }}" href="{{ url_for('content',id=a[0],url=a[1]) }}">{{ a[1] | tmp_atext }}</a>
         {% endfor %}
     </div>
-
     <script>
         var stories = [];
-        {
-        url: 'https://picsum.photos/1080/1920',
-        seeMore: ({ close }) => (
-            <div style={{ width: '100%', height: '100%' }}>Hello</div>
-        ),
-        header: {
-            heading: 'Mohit Karekar',
-            subheading: 'Posted 5h ago',
-            profileImage: 'https://picsum.photos/1000/1000'
-        }
-    }
         {% for ancla in anclas %}
+            {% set img = ancla[3] | img %}
             stories.push({
-//                url: "{{ url_for('content',id=ancla) }}"
-                id:{{ ancla[0] }},
-                link:'{{ ancla[1] }}',
-                title:'{{ ancla[2] | title }}',
-                img:'{{ ancla[3] | img }}'
-            })
+                url: "{{ url_for('static',filename=img) }}",
+                seeMore: function({ close }){
+                 return React.createElement.div("")
+            },
+            header: {
+                heading: '{{ ancla[2] | title }}',
+                /*subheading: 'Posted 5h ago',*/
+                profileImage: 'https://picsum.photos/1000/1000'
+            }
+        })
         {% endfor %}
-
+        localStorage.setItem("stories",JSON.stringify(stories));
     </script>
-
-
     <div id="example"></div>
-        <script src="/static/js/story.js"></script>
+    <script src="/static/js/story.js"></script>
 
     
 {% include "navbar.html" %}
