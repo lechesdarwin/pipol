@@ -21,13 +21,13 @@ def tmp_atext(text:str):
 
 @app.template_filter()
 def title(title_text):
-    """
-    [0] id
-    [1] link
-    [2] contenido
-    [3] img
-    """
-    return title_text.split("*$*")[0]
+    g.content = title_text.split("*$*")
+    return g.content[0]
+
+
+@app.template_filter()
+def content(cnt):
+    return g.content[1].split("*#*")[0]
 @app.template_filter()
 def img(img_link):
     try:

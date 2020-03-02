@@ -13,12 +13,12 @@ def pita_v(id, limit=8):
     result = None
     try:
         result = list(cursor.fetchone())
+        cursor.execute("SELECT id,link,contenido,img from content_t where id > %s limit %s ", (id,limit))
     except TypeError:
         abort(404)
     except Exception:
         abort(404)
-    if result:
-        cursor.execute("SELECT id,link,contenido,img from content_t where id > {} limit {}".format(result[0],limit))
-    data = {"main": result, "anclas": [list(row) for row in cursor.fetchall()]}
+    anclas = cursor.fetchall()
+    data = {"main": result, "anclas": [list(row) for row in anclas]}
     dead(conn, cursor)
     return data

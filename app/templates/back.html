@@ -5,3 +5,27 @@
 
   <a href="" rel="nofollow"></a>
   <a href="" target="_blank" rel="noopener noreferrer"></a>
+
+
+  /*    {
+    url: 'https://picsum.photos/1080/1920',
+    seeMore: ({ close }) => (
+        <div style={{ width: '100%', height: '100%' }}>Hello</div>
+    ),
+    header: {
+        heading: 'Mohit Karekar',
+        subheading: 'Posted 5h ago',
+        profileImage: 'https://picsum.photos/1000/1000'
+    }
+}
+{
+            url: "{{ url_for('static',filename=img) }}",
+            seeMore:  ({ close }) => (
+        React.createElement("div", {style: {width: '100%',height: '100%'}}, "Hello")
+        ),
+        header: {
+            heading: '{{ ancla[2] | title }}',
+            /*subheading: 'Posted 5h ago',*/
+//            profileImage: 'https://picsum.photos/1000/1000'
+//        }
+//    }

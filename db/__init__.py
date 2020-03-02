@@ -1,14 +1,17 @@
 import psycopg2
-# import db.config as config
+from .config import Config
+
+cfg = Config()
 
 
-def get_conn():
+def get_conn(host="localhost"):
     """
     antes de llevar a prioccion acomodar los parametros para que s4ea mas fdinamico
     y seguro
     """
     # cfg = config.Config()
-    return psycopg2.connect(host="127.0.0.1", database="content", user="scraper", password="scraperpass")
+    return psycopg2.connect(host=host, database=cfg.app_database, \
+        user=cfg.app_database_user, password=cfg.app_database_pass)
 
 
 def dead(conn, cursor):

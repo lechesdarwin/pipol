@@ -1,4 +1,5 @@
 {% include "header.html" %}
+{% import 'macros.html' as macros %}  
 <!-- Navbar goes here -->
 
     <!-- Page Layout here -->
@@ -6,9 +7,11 @@
 
         <div class="col s3">
           <!-- Grey navigation panel -->
-       
+          <!-- a_card(img,title,gancho,link) -->
+          {% for ancla in anclas %}
+            {{ macros.a_card(ancla[3][0],ancla[2] | title,g.gancho | content,url_for('content',id=ancla[0],url=ancla[1]))}}
+          {% endfor %}
         </div>
-  
         <div class="col s9">
           <!-- Teal page content  -->
           <div class="container">
@@ -20,7 +23,9 @@
             <span class="new badge" data-badge-caption="{{ fecha }}">Publicado en</span>
         </div>
         <div class="container">
-            {% for cat in categoria %}<span class="new badge" data-badge-caption="{{ cat }}">seccion</span>{% endfor %}
+            <div class="center-aling">
+                {% for cat in categoria %}<span class="new badge" data-badge-caption="{{ cat }}">seccion</span>{% endfor %}
+            </div>
         </div>
         <div class="container">
             <img class="responsive-img" src="{{ img | img_main }}" alt="{{ title }}">
@@ -49,7 +54,6 @@
             </script>
         {% endif %}
         </div>
-  
       </div>
 {% include "navbar.html" %}
 {% include "footer.html" %}

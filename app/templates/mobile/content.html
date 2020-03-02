@@ -43,13 +43,12 @@
     </div>
     <script>
         var stories = [];
+        var links = [];
         {% for ancla in anclas %}
             {% set img = ancla[3] | img %}
+            links.push('{{ url_for("content",id=ancla[0],url=ancla[1]) }}')
             stories.push({
-                url: "{{ url_for('static',filename=img) }}",
-                seeMore: function({ close }){
-                 return React.createElement.div("")
-            },
+            url: "{{ url_for('static',filename=img) }}",
             header: {
                 heading: '{{ ancla[2] | title }}',
                 /*subheading: 'Posted 5h ago',*/
@@ -58,8 +57,9 @@
         })
         {% endfor %}
         localStorage.setItem("stories",JSON.stringify(stories));
+        localStorage.setItem("links",JSON.stringify(links));
     </script>
-    <div id="example"></div>
+    <div id="stories"></div>
     <script src="/static/js/story.js"></script>
 
     
