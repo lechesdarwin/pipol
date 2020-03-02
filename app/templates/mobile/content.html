@@ -1,10 +1,76 @@
-{% include "header.html" %}
-<!-- Navbar goes here -->
-
-    <!-- Page Layout here -->
+{% include "mobile/header_m.html" %}
     <div class="container">
-        <!-- Page Content goes here -->
-
+        <div>
+            <h1 class="center-align">{{ title }}</h1>
+        </div>
     </div>
+    <div class="container">
+        <span class="new badge" data-badge-caption="{{ fecha }}">Publicado en</span>
+    </div>
+    <div class="container">
+        {% for cat in categoria %}<span class="new badge" data-badge-caption="{{ cat }}">seccion</span>{% endfor %}
+    </div>
+    <div class="container">
+        <img class="responsive-img" src="{{ img | img_main }}" alt="{{ title }}">
+    </div>
+    <div class="container">
+        {% for cnt in content %}
+            <p>{{ cnt | safe }}</p>
+        {% endfor %}
+    </div>
+    <div class="container">
+        {% if g.imgs %}
+        {% for img in g.imgs %}
+            <img class="responsive-img" src="{{ url_for('static', filename=img) }}" alt="{{ title }}">
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div  id="tuits" class="container">
+       
+    </div>
+    {% if tuit %}1
+    <script src="https://platform.twitter.com/widgets.js"></script>
+        <script>
+        {% for tui in tuit %}
+            twttr.widgets.createTweet("{{ tui }}", document.getElementById('tuits'));
+        {% endfor %}
+        </script>
+    {% endif %}
+    <div id="anclas" class="container">
+        {% for a in anclas %}
+            <a data-id="{{ a[0] }}" href="{{ url_for('content',id=a[0],url=a[1]) }}">{{ a[1] | tmp_atext }}</a>
+        {% endfor %}
+    </div>
+
+    <script>
+        var stories = [];
+        {
+        url: 'https://picsum.photos/1080/1920',
+        seeMore: ({ close }) => (
+            <div style={{ width: '100%', height: '100%' }}>Hello</div>
+        ),
+        header: {
+            heading: 'Mohit Karekar',
+            subheading: 'Posted 5h ago',
+            profileImage: 'https://picsum.photos/1000/1000'
+        }
+    }
+        {% for ancla in anclas %}
+            stories.push({
+//                url: "{{ url_for('content',id=ancla) }}"
+                id:{{ ancla[0] }},
+                link:'{{ ancla[1] }}',
+                title:'{{ ancla[2] | title }}',
+                img:'{{ ancla[3] | img }}'
+            })
+        {% endfor %}
+
+    </script>
+
+
+    <div id="example"></div>
+        <script src="/static/js/story.js"></script>
+
+    
 {% include "navbar.html" %}
-{% include "footer.html" %}
+{% include "mobile/footer_m.html" %}

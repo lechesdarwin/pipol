@@ -1,51 +1,11 @@
 {% include "header.html" %}
   <div class="row">
     <div id="columns">
-      <figure>
-        <h4>lñsdkjaslñdfjf asdlñjlñasdjlñas dj aslñdjaslñ djlñj lñadsj lñasdjaslñj</h4>
-        <figcaption>Cinderella wearing European fashion of the mid-1860’s</figcaption>
-      </figure>
-      
-      <figure>
-      <img src="https://techcrunch.com/wp-content/uploads/2019/10/Salesforce-Tower.jpg?w=430&h=230&crop=1">
-      <figcaption style="font-size: 20px;color:black;font-weight: bold;">Rapunzel, clothed in 1820’s period fashion</figcaption>
-      </figure>
-      
-      <figure>
-      <img src="//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/belle.jpg">
-      <figcaption>Belle, based on 1770’s French court fashion</figcaption>
-      </figure>
-      
-      <figure>
-      <img src="https://techcrunch.com/wp-content/uploads/2019/10/Salesforce-Tower.jpg?w=430&h=230&crop=1">
-      <figcaption>Mulan, based on the Ming Dynasty period</figcaption>
-      </figure>
-      
-       <figure>
-       <img src="https://techcrunch.com/wp-content/uploads/2019/10/Salesforce-Tower.jpg?w=430&h=230&crop=1">
-      <figcaption>Sleeping Beauty, based on European fashions in 1485</figcaption>
-      </figure>
-      
-       <figure>
-       <img src="//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/pocahontas_2.jpg">
-      <figcaption>Pocahontas based on 17th century Powhatan costume</figcaption>
-      </figure>
-      
-      <figure>
-      <img src="//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/snow-white.jpg">
-      <figcaption>Snow White, based on 16th century German fashion</figcaption>
-      </figure>	
-      
-       <figure>
-      <img src="//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/ariel.jpg">
-      <figcaption>Ariel wearing an evening gown of the 1890’s</figcaption>
-      </figure>
-      
-        <figure>
-      <img src="//s3-us-west-2.amazonaws.com/s.cdpn.io/4273/tiana.jpg">
-        <figcaption>Tiana wearing the <i>robe de style</i> of the 1920’s</figcaption>
-      </figure>	
-      </div>
+      {% import 'macros.html' as macros %}
+      {% for dat in data %}
+          {{ macros.index_card(dat[1],dat[2],dat[3],url_for('static',filename=dat[5]),url_for('content',id=dat[1],url=dat[7])) }}
+      {% endfor %} 
+    </div>
   </div>
   {% include "navbar.html" %}
   {% include "footer.html" %}

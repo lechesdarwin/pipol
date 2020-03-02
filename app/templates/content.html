@@ -6,11 +6,48 @@
 
         <div class="col s3">
           <!-- Grey navigation panel -->
+       
         </div>
   
         <div class="col s9">
           <!-- Teal page content  -->
-
+          <div class="container">
+            <div>
+                <h1 class="center-align">{{ title }}</h1>
+            </div>
+        </div>
+        <div class="container">
+            <span class="new badge" data-badge-caption="{{ fecha }}">Publicado en</span>
+        </div>
+        <div class="container">
+            {% for cat in categoria %}<span class="new badge" data-badge-caption="{{ cat }}">seccion</span>{% endfor %}
+        </div>
+        <div class="container">
+            <img class="responsive-img" src="{{ img | img_main }}" alt="{{ title }}">
+        </div>
+        <div class="container">
+            {% for cnt in content %}
+                <p>{{ cnt | safe }}</p>
+            {% endfor %}
+        </div>
+        <div class="container">
+            {% if g.imgs %}
+            {% for img in g.imgs %}
+                <img class="responsive-img" src="{{ url_for('static', filename=img) }}" alt="{{ title }}">
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div  id="tuits" class="container">
+           
+        </div>
+        {% if tuit %}1
+        <script src="https://platform.twitter.com/widgets.js"></script>
+            <script>
+            {% for tui in tuit %}
+                twttr.widgets.createTweet("{{ tui }}", document.getElementById('tuits'));
+            {% endfor %}
+            </script>
+        {% endif %}
         </div>
   
       </div>

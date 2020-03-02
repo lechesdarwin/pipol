@@ -6,9 +6,13 @@ def id_tuit_text_plain(text,lis):
     m = re.search(regex, text)
     if m:
         lis.append(m.group(1))
-        
+    return text
 
 def fuente(text):
+    regex = r"(for)|(while)|(function)|(document)|(var|let)|(onload)"
+    m = re.search(regex,text)
+    if m:
+        return " "
     regex = r"(Fuente:)"
     m = re.search(regex,text)
     if m:
@@ -18,3 +22,7 @@ def fuente(text):
         except Exception:
             return text
     return text
+
+
+def date_parser(date):
+    return f"{date.day}/{date.month}/{date.year}"

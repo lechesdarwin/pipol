@@ -8,6 +8,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
   <style>
     @font-face{font-family:'Calluna';
  src:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/callunasansregular-webfont.woff') format('woff');
@@ -70,6 +72,23 @@ div#columns:hover figure:not(:hover) {
 @media screen and (max-width: 750px) { 
   #columns { column-gap: 0px; }
   #columns figure { width: 100%; }
+}
+.contenedor{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+ 
+.texto-encima{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.centrado{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
   </style>
 </head>
