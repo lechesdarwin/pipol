@@ -7,3 +7,11 @@ create table view(id integer unique,id_f integer,title varchar(255),categoria va
 --test duplicates view
 
 select * from view ou where (select count(*) from view inr where inr.id = ou.id) > 1
+
+-- select catetgoria
+select id,categoria from content_t where categoria IN ('{DeRedes,Política}');
+
+-- search table
+CREATE TABLE search(id serial primary key,id_f integer,texto text,categoria varchar(38)[]);
+CREATE INDEX ON search USING GIN (to_tsvector('spanish',texto));
+SELECT * FROM posts where searchtext @@ to_tsquery('keyword');

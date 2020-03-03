@@ -27,3 +27,8 @@ def content(template, id, url):
         categoria=main["main"][2], fecha=utils.date_parser(main["main"][3]), \
             img=main["main"][4], external=main["main"][5],\
                 tuit=main["main"][7], anclas=main["anclas"])
+
+
+@app.route("/search")
+def search():
+    return render_template("search.html")

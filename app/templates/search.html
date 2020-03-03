@@ -1,0 +1,35 @@
+{% include 'mobile/header_m.html' %}
+<nav>
+    <div class="nav-wrapper">
+      <ul id="nav-mobile" class="left">
+        <li><i onclick="history.back()" class="material-icons">arrow_back</i></li>
+      </ul>
+      <a href="/" class="center brand-logo"><i class="material-icons">nature_people</i>Pipol</a>
+    </div>
+</nav>
+
+
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <h1 class="header center pink-text text-lighten-3">Pipol</h1>
+      <div class="row center">
+        <h5 class="header col s12 light grey-text text-lighten-1">Busca las ultimas cagadas de nuestros politicos</h5>
+      </div>
+    </div>
+  </div>
+    <div class="container">
+  <div class="row">
+    <div class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">search</i>
+          <input type="text" id="autocomplete-input" class="autocomplete">
+          <label for="autocomplete-input">que dijo la señora de la esquina??</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+{% include "navbar.html" %}
+{% include "footer.html" %}
