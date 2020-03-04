@@ -1,7 +1,8 @@
+import os
 from flask import Flask, request, abort
 import redis
-from db import get_conn
 from psycopg2.errors import UniqueViolation
+from db import get_conn
 
 r3 = redis.StrictRedis(host=os.getenv("REDIS_HOST"),db=3,port=int(os.getenv("REDIS_PORT")),password=os.getenv("REDIS_PASS"))
 r2 = redis.StrictRedis(host=os.getenv("REDIS_HOST"),port=int(os.getenv("REDIS_PORT")),password=os.getenv("REDIS_PASS"),db=2)

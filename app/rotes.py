@@ -1,21 +1,37 @@
 
-from flask import render_template, request, url_for, redirect
+from flask import render_template, request, url_for, redirect, g
 from flask_mobility.decorators import mobile_template
-import time
+from time import strftime
 from . import app
 from .view.index import index_v
 from .view.pita import pita_v
 from . import utils
 from .view.cat import cat_v
-from db import get_conn
+from db import get_conn, get_rconn
 
-#@app.before_request
-#def seccion():
-#    if g.partes :
-#
-#    if int(time.strftime("%H")) == 0:
-#
-#        
+
+@app.before_request
+def categoria():
+    r = get_rconn(3)
+    if strftime("%H") == "00":
+        try:
+            c = get_conn()
+            cur = c.cursor()
+            cur.execute("SELECT * from categoria")
+            dcat = dict()
+            cat = cur.fetchall()
+            for k,v in cat.items():
+                dcat[k] = v.encode("utf-8")
+            r.hmset("categoria",dcat)    
+        except Exception:
+            pass
+    else:
+        c = list()
+        tmp = r.hgetall("categoria")
+        for k,v in tmp.items():
+            c.append(v.decode("utf-8"))
+        g.categorias = c    
+        
 
 @app.route("/", methods=["GET"])
 def index():

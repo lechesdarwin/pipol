@@ -3,14 +3,12 @@ certifi==2019.11.28
 chardet==3.0.4
 Click==7.0
 entrypoints==0.3
-filetype==1.0.5
 flake8==3.7.9
 Flask==1.1.1
 Flask-Mobility==1.0.0
 Flask-WTF==0.14.3
 gevent==1.4.0
 greenlet==0.4.15
-grequests==0.4.0
 idna==2.9
 itsdangerous==1.1.0
 Jinja2==2.11.1
@@ -21,6 +19,7 @@ psycopg2==2.8.4
 pycodestyle==2.5.0
 pyflakes==2.1.1
 python-magic==0.4.15
+redis==3.4.1
 requests==2.23.0
 selenium==3.141.0
 soupsieve==2.0

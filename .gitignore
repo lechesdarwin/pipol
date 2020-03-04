@@ -2,7 +2,7 @@
 __pycache__
 site.min
 content.sql
-init.sh
+# init.sh
 app/static/img/
 static/assets
 node_modules
