@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from concurrent.futures import ThreadPoolExecutor
+# from concurrent.futures import ThreadPoolExecutor
 import requests
 from db import get_conn
 
@@ -20,7 +20,7 @@ def e(data):
     conn.commit()
 
 
-executor = ThreadPoolExecutor(max_workers=4)
+# executor = ThreadPoolExecutor(max_workers=4)
 
 for d in data:
     e(d)

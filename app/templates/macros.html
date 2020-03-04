@@ -18,9 +18,10 @@
 {% macro index_card(id,title,categoria,img, link)%}
     <figure>
         <img src="{{ img }}" loading="lazy" alt="{{ title }}">
-        <figcaption style="font-size: 20px;color:black;font-weight: bold;"><a href="{{ link }}" style="color: black;">{{title}}</a>{% for cat in categoria %}<span class="new badge" data-badge-caption="{{ cat }}">seccion</span>{% endfor %}</figcaption>
+        <figcaption style="font-size: 20px;color:black;font-weight: bold;"><a href="{{ link }}" style="color: black;">{{title}}</a>{% if categoria %}{% for cat in categoria %}<span class="new badge" data-badge-caption="{{ cat }}">seccion</span>{% endfor %}{% endif %}</figcaption>
     </figure>
-{% endmacro%}
+{% endmacro %}
+
 
 {% macro a_card(img,title,gancho,link) %}
     <div class="card">

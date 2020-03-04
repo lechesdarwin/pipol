@@ -18,14 +18,14 @@
 
     <div class="container">
         <div>
-            <h1 class="center-align">{{ title }}</h1>
+            <h1 style="font-size:35px" class="center-align">{{ title }}</h1>
         </div>
     </div>
     <div class="container">
         <span class="new badge" data-badge-caption="{{ fecha }}">Publicado en</span>
     </div>
     <div class="container">
-        {% for cat in categoria %}<span class="new badge" data-badge-caption="{{ cat }}">seccion</span>{% endfor %}
+        {% for cat in categoria %}<a href="{{url_for('show_cat',name=cat)}}"><span class="new badge" data-badge-caption="{{ cat }}">seccion</span><a>{% endfor %}
     </div>
     <div class="container">
         <img class="responsive-img" src="{{ img | img_main }}" alt="{{ title }}">

@@ -3,8 +3,18 @@ import redis
 from db import get_conn
 from psycopg2.errors import UniqueViolation
 
-
+r3 = redis.StrictRedis(host=os.getenv("REDIS_HOST"),db=3,port=int(os.getenv("REDIS_PORT")),password=os.getenv("REDIS_PASS"))
+r2 = redis.StrictRedis(host=os.getenv("REDIS_HOST"),port=int(os.getenv("REDIS_PORT")),password=os.getenv("REDIS_PASS"),db=2)
 app = Flask(__name__)
+
+def dump_category(r, categorias, cursor):
+    for cat in categorias:
+        if r.get(cat):
+            continue
+        else:
+            r.set(cat,1)
+            cursor.execute("INSERT INTO categoria(categoria)VALUES(%s)",(cat,))
+    
 
 def view_controler(r, insert,cursor):
     idex_redis = r.get("index")
@@ -30,7 +40,6 @@ def dump():
     conn = get_conn()
     cursor = conn.cursor()
     data = request.json
-    print(data)
     dat = []
     for k,v in data.items():
         dat.append(v)
@@ -39,15 +48,15 @@ def dump():
         query = """INSERT INTO content_t(contenido,categoria,fecha,img,external,link,tuit,pined) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)RETURNING id,contenido,categoria,fecha,img,pined,link"""
         cursor.execute(query,data)
         returning = cursor.fetchone()
-        view_controler(redis.Redis(db=2),returning,cursor)
+        dump_category(r3, returning[2], cursor)
+        view_controler(r2, returning, cursor)
     except Exception as e:
         print(e)
         abort(500)
     conn.commit()
     cursor.close()
     conn.close()
-    print(request.json)
-    return request.json
+    return "True", 200
 
 
 app.run()

@@ -22,3 +22,4 @@ def pita_v(id, limit=8):
     data = {"main": result, "anclas": [list(row) for row in anclas]}
     dead(conn, cursor)
     return data
+
