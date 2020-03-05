@@ -8,7 +8,6 @@ def result(search):
     try:
         q = "SELECT * FROM search WHERE texto @@ to_tsquery(\'{}\') limit 10".format(search)
         cursor.execute(q)
-        print(q)
         data = cursor.fetchall()
     except Exception:
         return None

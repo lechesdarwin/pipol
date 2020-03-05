@@ -16,7 +16,7 @@ from db import get_conn, get_rconn
 @app.before_request
 def categoria():
     r = get_rconn(3)
-    if strftime("%H") == "00":
+    if strftime("%H") == "03":
         try:
             c = get_conn()
             cur = c.cursor()
@@ -25,7 +25,7 @@ def categoria():
             cat = cur.fetchall()
             for k,v in cat.items():
                 dcat[k] = v.encode("utf-8")
-            r.hmset("categoria",dcat)    
+            r.hmset("categoria",dcat)
         except Exception:
             pass
     else:

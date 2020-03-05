@@ -1,4 +1,4 @@
-{% include 'mobile/header_m.html' %}
+{% include 'header.html' %}
 <script src="{{ url_for('static',filename='js/dist/helper.js') }}"></script>
 <nav>
     <div class="nav-wrapper">
@@ -47,10 +47,8 @@
 
   $el.addEventListener("keydown",function (e) {
     if (e.key == "Enter"){
-        console.log(e)
         text=e.srcElement.value.replace(/\s/g,"|");
         $("#res").html(" ");
-        console.log(text)
         get(verbHTTP.GET,"/search?q="+text,function(e) {
           d=JSON.parse(e);
          for (const c of d) {
