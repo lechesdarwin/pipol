@@ -5,7 +5,9 @@ class Node:
         self.data = data
 
     def insert(self,data):
-        if self.data:
+        if data == self.data:
+            self.data = data
+        elif self.data:
             if data < self.data:
                 if self.left is None:
                     self.left = Node(data)
@@ -60,8 +62,10 @@ def postOrder(root,link):
         link.append(root.data)
 
 
-tree = Node(12)
-tree.insert(6)
-tree.insert(14)
-tree.insert(3)
+tree = Node(3)
+tree.insert(4)
+tree.insert(2)
+tree.insert(2)
+tree.insert(2)
+tree.insert(8)
 

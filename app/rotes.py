@@ -1,12 +1,15 @@
 
+from time import strftime
+import json
 from flask import render_template, request, url_for, redirect, g
 from flask_mobility.decorators import mobile_template
-from time import strftime
+from flask import request
 from . import app
 from .view.index import index_v
 from .view.pita import pita_v
-from . import utils
 from .view.cat import cat_v
+from .view.search import result
+from . import utils
 from db import get_conn, get_rconn
 
 
@@ -54,11 +57,15 @@ def content(template, id, url):
                 tuit=main["main"][7], anclas=main["anclas"])
 
 
-@app.route("/search")
-def search():
-    return render_template("search.html")
-
-
 @app.route("/show/<string:name>")
 def show_cat(name):
     return render_template("categorias.html",data=cat_v(name))
+
+@app.route("/search", methods=["POST", "GET"])
+def search():
+    if request.args.get("q"):
+        q = request.args.get("q")
+        data = result(str(q))
+        return json.dumps(data)
+    else:
+        return render_template("search.html")

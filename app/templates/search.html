@@ -1,4 +1,5 @@
 {% include 'mobile/header_m.html' %}
+<script src="{{ url_for('static',filename='js/dist/helper.js') }}"></script>
 <nav>
     <div class="nav-wrapper">
       <ul id="nav-mobile" class="left">
@@ -7,29 +8,62 @@
       <a href="/" class="center brand-logo"><i class="material-icons">nature_people</i>Pipol</a>
     </div>
 </nav>
-
-
 <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <h1 class="header center pink-text text-lighten-3">Pipol</h1>
-      <div class="row center">
-        <h5 class="header col s12 light grey-text text-lighten-1">Busca las ultimas cagadas de nuestros politicos</h5>
-      </div>
+  <div class="container">
+    <h1 class="header center pink-text text-lighten-3">PIPOL search</h1>
+    <div class="row center">
+      <h5 class="header col s12 light grey-text text-lighten-1">Busca de las utimas cagadas de nuestro politicos y tambien encuentra personas geniales</h5>
     </div>
   </div>
-    <div class="container">
+</div>
+<div id="search">
+  <div class="center-align">
   <div class="row">
     <div class="col s12">
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s6" style="left: 25%;">
           <i class="material-icons prefix">search</i>
-          <input type="text" id="autocomplete-input" class="autocomplete">
-          <label for="autocomplete-input">que dijo la señora de la esquina??</label>
+          <input type="text" id="icon_prefix2" class="materialize-textarea" onkeypress="(e)=>e.preventDefault()">
+          <label for="icon_prefix2">Que dijo la señora de la esquina</label>
         </div>
       </div>
     </div>
   </div>
   </div>
+</div>
+<div id="res"></div>
+<script>
+  $el = document.getElementById("icon_prefix2");
+  function contetido(id,cnt) {
+    tmp = cnt.split("*$*")
+    link = tmp[0].replace(/\s/g,"-")
+    return `<div class="container">
+    <h6>${tmp[0]}</h6>
+    <a href="/soga/${id}/${link}">/soga/${id}/${link}</a>
+    <p style="margin: 5px;">${tmp[1].split("*#*")[0]}</p>
+  </div><div class="divider"></div>
+  `
+  }
+
+  $el.addEventListener("keydown",function (e) {
+    if (e.key == "Enter"){
+        console.log(e)
+        text=e.srcElement.value.replace(/\s/g,"|");
+        $("#res").html(" ");
+        console.log(text)
+        get(verbHTTP.GET,"/search?q="+text,function(e) {
+          d=JSON.parse(e);
+         for (const c of d) {
+           console.log("indot")
+           div = contetido(c[1],c[2])
+            localStorage["s"]= localStorage["s"]+div;
+          }
+          $("#res").html(localStorage["s"]);
+          localStorage.clear()
+        })
+      }
+  })
+</script>
 
 {% include "navbar.html" %}
 {% include "footer.html" %}

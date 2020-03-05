@@ -16,4 +16,4 @@ select id,link,contenido,img from content_t where categoria IN ('{DeRedes}') ord
 -- search table
 CREATE TABLE search(id serial primary key,id_f integer,texto text,categoria varchar(38)[]);
 CREATE INDEX ON search USING GIN (to_tsvector('spanish',texto));
-SELECT * FROM posts where searchtext @@ to_tsquery('keyword');
+SELECT * FROM search where texto @@ to_tsquery('keyword');
