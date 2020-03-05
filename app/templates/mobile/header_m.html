@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% if g.title %}{{ g.title }}{% elif g.cat %}Aqui te presentamos lo utimos acontesido en {{g.cat}}{% else %}Miestras vos estabas trabajando nostros estamos haciendo el deber de traerte las ultimas noticias {% endif %}</title>
+    <meta name="description" content="{% if g.content %}{{ g.content }}{% else %}Ultimas noticias de pepito jaimico y de Bolivia para que no estes desubicado ¿o sos masista? {% endif %}">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

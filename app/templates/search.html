@@ -52,7 +52,6 @@
         get(verbHTTP.GET,"/search?q="+text,function(e) {
           d=JSON.parse(e);
          for (const c of d) {
-           console.log("indot")
            div = contetido(c[1],c[2])
             localStorage["s"]= localStorage["s"]+div;
           }

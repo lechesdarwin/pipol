@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>{% if g.title %}{{ g.title }}{% elif g.cat %}Aqui te presentamos lo utimos acontesido en {{g.cat}}{% else %}Miestras vos estabas trabajando nostros estamos haciendo el deber de traerte las ultimas noticias {% endif %}</title>
+    <meta name="description" content="{% if g.content %}{{ g.content }}{% else %}Ultimas noticias de pepito jaimico y de Bolivia para que no estes desubicado ¿o sos masista? {% endif %}">
 <!--Favicop-->
       <!--<link rel="apple-touch-icon" sizes="57x57" href="/static/favico/apple-icon-57x57.png">
       <link rel="apple-touch-icon" sizes="60x60" href="/static/favico/apple-icon-60x60.png">

@@ -49,8 +49,10 @@ def content(template, id, url):
     main = pita_v(id, limit=limit)
     content = main["main"][1].split("*$*")
     title = content[0]
+    g.title = content[0]
     content = content[1].split("*#*")
     content = [utils.fuente(utils.id_tuit_text_plain(cnt,main["main"][7])) for cnt in content]
+    g.content = content[0]
     return render_template(template, id=main["main"][0], title=title, content=content, \
         categoria=main["main"][2], fecha=utils.date_parser(main["main"][3]), \
             img=main["main"][4], external=main["main"][5],\
@@ -59,10 +61,12 @@ def content(template, id, url):
 
 @app.route("/show/<string:name>")
 def show_cat(name):
+    g.cat = name
     return render_template("categorias.html",data=cat_v(name))
 
 @app.route("/search", methods=["POST", "GET"])
 def search():
+    g.search = "Hi!"
     if request.args.get("q"):
         q = request.args.get("q")
         data = result(str(q))
